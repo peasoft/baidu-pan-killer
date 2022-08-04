@@ -10,8 +10,6 @@ jobs:
       
       - name: Configure bypy
         uses: mxschmitt/action-tmate@v3
-        with:
-          sudo: false
       
       - name: Kill
         run: |
