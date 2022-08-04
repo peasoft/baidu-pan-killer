@@ -28,6 +28,8 @@ while size > 0:
         while i > 0:
             f.write(bytes([random.randint(0, 255)]))
             i -= 1
+            if i%1024 == 0:
+                print(i,"left")
     os.system("bypy upload "+filename)
     os.remove(filename)
-    print("Finished "+filename)
+    print("Finished",filename)
