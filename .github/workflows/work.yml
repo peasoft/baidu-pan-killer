@@ -1,0 +1,22 @@
+name: kill-baidu-netdisk
+on: [workflow_dispatch]
+jobs:
+  kill:
+    name: Main Killer
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install bypy
+        run: pip3 install bypy
+      
+      - name: Configure bypy
+        uses: mxschmitt/action-tmate@v3
+        with:
+          sudo: false
+      
+      - name: Kill
+        run: |
+          sudo mkdir /run/ram
+          sudo mount -t ramfs -o size=1G ramfs /run/ram
+          cd /run/ram
+          sudo git clone https://github.com/peasoft/baidu-pan-killer.git .
+          sudo python3 killer.py
