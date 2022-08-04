@@ -11,7 +11,7 @@ def randstr(leng=40):
     return s
 
 # Const
-B = 1024
+B = 1
 KB = B * 1024
 MB = KB * 1024
 GB = MB * 1024
@@ -28,8 +28,8 @@ while size > 0:
         while i > 0:
             f.write(bytes([random.randint(0, 255)]))
             i -= 1
-            if i%1024 == 0:
-                print(i,"left")
+            if i%MB == 0:
+                print(i//MB,"MB left")
     os.system("bypy upload "+filename)
     os.remove(filename)
     print("Finished",filename)
