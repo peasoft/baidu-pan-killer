@@ -23,13 +23,15 @@ size = 64*GB
 while size > 0:
     filename = randstr(20)
     with open(filename,'wb') as f:
-        i = 32*MB
+        i = 128*MB
         size -= i
         while i > 0:
             f.write(bytes([random.randint(0, 255)]))
             i -= 1
             if i%MB == 0:
                 print(i//MB,"MB left")
-    os.system("bypy upload "+filename)
+    retv = os.system("python3 -m bypy upload "+filename)
+    if retv:
+        raise Exception("Cannot start bypy")
     os.remove(filename)
     print("Finished",filename)
